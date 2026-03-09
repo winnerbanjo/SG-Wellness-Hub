@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      SG Wellness Hub Minoxidil Landing Page
+      Quick edit guide:
+      1) Replace gallery images in /images with these names:
+         - images/product-main.jpg
+         - images/product-2.jpg
+         - images/product-3.jpg
+         - images/product-4.jpg
+         - images/usage-1.jpg
+         - images/benefit-1.jpg
+      2) Update business settings in script.js:
+         - WHATSAPP_NUMBER
+         - PAYSTACK_PUBLIC_KEY
+         - PRODUCT_PRICE
+         - SHIPPING_FEE
+         - DELIVERY_CITIES
+      3) Optional favicon: replace images/favicon.png
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SG Wellness Hub 5% Minoxidil | Hair Growth Solution Nigeria</title>
+    <meta
+      name="description"
+      content="Order SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml). Nationwide delivery in Nigeria, pay on delivery in selected locations, WhatsApp support, and optional ₦1,000 commitment fee."
+    />
+    <meta
+      name="keywords"
+      content="Minoxidil Nigeria, hair growth solution Nigeria, receding hairline treatment, beard growth Nigeria, SG Wellness Hub, pay on delivery hair product"
+    />
+    <meta property="og:title" content="SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)" />
+    <meta
+      property="og:description"
+      content="Regrow thicker, healthier hair with trusted 5% Minoxidil. Fast nationwide delivery across Nigeria."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="images/product-main.jpg" />
+    <meta property="og:locale" content="en_NG" />
+    <meta name="theme-color" content="#123728" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://js.paystack.co/v1/inline.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="announcement-bar" role="status">
+      Nationwide Delivery Available Across Nigeria • Pay On Delivery In Selected Locations • Trusted 5% Minoxidil Solution
+    </div>
+
+    <header class="site-header">
+      <div class="container header-wrap">
+        <a href="#top" class="brand" id="top">SG Wellness Hub</a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Main Navigation">
+          <a href="#benefits">Benefits</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#faq">FAQ</a>
+          <a href="#order">Order</a>
+          <a href="#order" class="btn btn-small btn-primary">Order Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div class="hero-content reveal">
+            <p class="eyebrow">Safe. Trusted. Delivered Nationwide.</p>
+            <h1>Regrow Thicker, Healthier Hair With Proven 5% Minoxidil</h1>
+            <p class="hero-support">
+              Struggling with receding hairline, thinning edges, patchy beard growth, or weak hair density? SG Wellness Hub 5% Minoxidil Solution is formulated to help stimulate hair follicles, support regrowth, and improve density when used consistently.
+            </p>
+            <ul class="hero-points">
+              <li>Supports hair regrowth in thinning areas</li>
+              <li>Helps strengthen weak follicles</li>
+              <li>Suitable for men and women</li>
+              <li>Easy-to-use topical solution</li>
+              <li>Nationwide delivery available</li>
+            </ul>
+            <div class="hero-cta-wrap">
+              <a class="btn btn-primary" href="#order">Order Now</a>
+              <a class="btn btn-whatsapp js-whatsapp-generic" href="#" data-message-type="quick">Chat on WhatsApp</a>
+              <button class="btn btn-commitment js-pay-commitment" type="button">Pay ₦1,000 Commitment Fee</button>
+            </div>
+            <div class="trust-badges">
+              <span>Nationwide Delivery</span>
+              <span>Pay On Delivery</span>
+              <span>WhatsApp Support</span>
+              <span>Quality Assured</span>
+            </div>
+            <p class="urgency-note">Fast-moving product. Dispatch slots are handled on a first-confirmed basis.</p>
+          </div>
+
+          <aside class="hero-card reveal" aria-label="Product Spotlight">
+            <div class="product-image-wrap">
+              <img class="product-main-image" src="images/product-main.jpg" alt="SG Wellness Hub 5% Minoxidil Hair Growth Solution bottle" data-fallback-label="Product Image" />
+            </div>
+            <h2>SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)</h2>
+            <p>
+              Hair thinning, receding hairline, patchy beard growth, or weak edges can affect confidence and appearance.
+            </p>
+            <p>
+              SG Wellness Hub 5% Minoxidil Solution is formulated with a clinically recognized active ingredient designed to stimulate dormant hair follicles and support visible regrowth when used consistently.
+            </p>
+            <ul>
+              <li>Supports regrowth in thinning areas</li>
+              <li>Helps improve hair density</li>
+              <li>Suitable for men and women</li>
+              <li>Easy-to-apply topical solution</li>
+              <li>Nationwide delivery available</li>
+            </ul>
+            <p class="hero-card-highlight">With consistent use twice daily, many users begin noticing improvement within 8–12 weeks.</p>
+            <p class="hero-card-foot">Consistency determines results.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="star-strip">
+        <div class="container">
+          <p>★★★★★ Trusted by customers across Nigeria for reliable delivery, support, and product quality.</p>
+        </div>
+      </section>
+
+      <section id="benefits" class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Product Highlights</p>
+            <h2>Built To Support Consistent Hair Regrowth Goals</h2>
+          </div>
+          <div class="benefit-grid">
+            <article class="info-card reveal">
+              <div class="icon-circle">✓</div>
+              <h3>Follicle Support</h3>
+              <p>Designed to support regrowth where follicles are weak or less active.</p>
+            </article>
+            <article class="info-card reveal">
+              <div class="icon-circle">◎</div>
+              <h3>Density Focused</h3>
+              <p>Targets thinning zones to support fuller-looking scalp and beard density.</p>
+            </article>
+            <article class="info-card reveal">
+              <div class="icon-circle">⏱</div>
+              <h3>Routine Friendly</h3>
+              <p>Simple twice-daily application that fits into morning and evening routines.</p>
+            </article>
+            <article class="info-card reveal">
+              <div class="icon-circle">⚑</div>
+              <h3>Nigeria-Wide Access</h3>
+              <p>Easy order processing with nationwide delivery and support follow-up.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="gallery">
+        <div class="container reveal">
+          <div class="section-head">
+            <p class="eyebrow">Product Gallery</p>
+            <h2>Preview Product Angles And Usage Shots</h2>
+          </div>
+          <div class="gallery-layout">
+            <figure class="gallery-main-wrap">
+              <img id="galleryMain" src="images/product-main.jpg" alt="Main product view" data-fallback-label="Main Gallery Image" />
+            </figure>
+            <div class="gallery-thumbs" role="list" aria-label="Product image thumbnails">
+              <button class="thumb active" type="button" data-image="images/product-main.jpg" data-alt="Main product view">
+                <img src="images/product-main.jpg" alt="Thumbnail of main product" data-fallback-label="Thumb 1" />
+              </button>
+              <button class="thumb" type="button" data-image="images/product-2.jpg" data-alt="Product side angle">
+                <img src="images/product-2.jpg" alt="Thumbnail of product side angle" data-fallback-label="Thumb 2" />
+              </button>
+              <button class="thumb" type="button" data-image="images/product-3.jpg" data-alt="Product back angle">
+                <img src="images/product-3.jpg" alt="Thumbnail of product back angle" data-fallback-label="Thumb 3" />
+              </button>
+              <button class="thumb" type="button" data-image="images/product-4.jpg" data-alt="Dropper and bottle closeup">
+                <img src="images/product-4.jpg" alt="Thumbnail of dropper and bottle" data-fallback-label="Thumb 4" />
+              </button>
+              <button class="thumb" type="button" data-image="images/usage-1.jpg" data-alt="Usage demonstration">
+                <img src="images/usage-1.jpg" alt="Thumbnail of usage demonstration" data-fallback-label="Thumb 5" />
+              </button>
+              <button class="thumb" type="button" data-image="images/benefit-1.jpg" data-alt="Hair density support visual">
+                <img src="images/benefit-1.jpg" alt="Thumbnail of hair density support visual" data-fallback-label="Thumb 6" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pain-points">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Common Challenges</p>
+            <h2>Seeing More Hair On Your Pillow, Comb, Or Hairline?</h2>
+          </div>
+          <div class="pill-grid reveal">
+            <span>Receding hairline</span>
+            <span>Thinning edges</span>
+            <span>Patchy beard growth</span>
+            <span>Low hair density</span>
+            <span>Confidence concerns</span>
+            <span>Stress or hormone-related thinning</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="section section-alt">
+        <div class="container split-grid">
+          <article class="reveal">
+            <p class="eyebrow">Why Minoxidil Works</p>
+            <h2>Scientifically Recognized Active Support</h2>
+            <p>
+              5% Minoxidil is a widely recognized topical active ingredient used to support hair regrowth by helping stimulate hair follicles in targeted areas. Consistency is important, and results vary from person to person.
+            </p>
+            <p class="compliance-note">
+              This product supports hair regrowth efforts but does not guarantee identical results for every user.
+            </p>
+          </article>
+          <article class="reveal">
+            <p class="eyebrow">How To Use</p>
+            <h2>How To Use</h2>
+            <ol class="steps-list">
+              <li>Apply 1ml to affected area twice daily</li>
+              <li>Massage gently into scalp or beard area</li>
+              <li>Allow to dry before styling</li>
+              <li>Use consistently for best results</li>
+              <li>Commit to at least 3 months of use</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="timeline">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Timeline</p>
+            <h2>What To Expect</h2>
+          </div>
+          <div class="timeline-grid">
+            <article class="timeline-card reveal">
+              <h3>Weeks 1–4</h3>
+              <p>Adjustment phase</p>
+            </article>
+            <article class="timeline-card reveal">
+              <h3>Weeks 6–12</h3>
+              <p>Visible thickening may begin</p>
+            </article>
+            <article class="timeline-card reveal">
+              <h3>3–6 Months</h3>
+              <p>Noticeable improvement in density</p>
+            </article>
+          </div>
+          <p class="timeline-note reveal">Results vary per individual.</p>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="why-us">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Why SG Wellness Hub</p>
+            <h2>Why Customers Choose SG Wellness Hub</h2>
+          </div>
+          <div class="check-grid reveal">
+            <p>Trusted product sourcing</p>
+            <p>Structured customer support</p>
+            <p>Nationwide delivery</p>
+            <p>Professional order confirmation</p>
+            <p>Easy WhatsApp support</p>
+            <p>Pay on delivery in selected locations</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="delivery-policy">
+        <div class="container split-grid">
+          <article class="info-panel reveal">
+            <p class="eyebrow">Delivery Terms</p>
+            <h2>Pay On Delivery Available In Selected Locations</h2>
+            <p>
+              We offer Pay On Delivery in selected cities across Nigeria.
+            </p>
+            <ul>
+              <li>Ensure you are available to receive your order</li>
+              <li>Confirm your address correctly</li>
+              <li>Pick up calls from our confirmation team</li>
+            </ul>
+            <p><strong>Unconfirmed orders are not processed.</strong></p>
+          </article>
+          <article class="highlight-panel reveal">
+            <h3>Serious Order Fast-Track</h3>
+            <p>
+              To secure serious orders faster, customers can also pay a ₦1,000 shipping commitment fee before dispatch. This helps us reduce fake orders and process genuine deliveries quicker.
+            </p>
+            <button class="btn btn-commitment js-pay-commitment" type="button">Pay ₦1,000 Commitment Fee</button>
+            <small>Supported cities are confirmed during call-back. Current focus: <span id="deliveryCitiesInline">Lagos, Abuja, Port Harcourt, Ibadan, Benin City</span>.</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="guarantee">
+        <div class="container reveal">
+          <p class="eyebrow">Assurance</p>
+          <h2>Our Confidence Guarantee</h2>
+          <p>
+            At SG Wellness Hub, we stand behind product quality and authenticity.
+          </p>
+          <p>
+            If your product arrives damaged or incorrect, we will replace it immediately.
+          </p>
+          <p>Your confidence matters to us.</p>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Questions</p>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+          <div class="faq-list reveal" role="list">
+            <article class="faq-item">
+              <button class="faq-question" aria-expanded="false">Is this original 5% Minoxidil?</button>
+              <div class="faq-answer" hidden>
+                <p>Yes. SG Wellness Hub supplies quality-tested 5% Minoxidil formulated for effective hair regrowth support.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" aria-expanded="false">How long before I see results?</button>
+              <div class="faq-answer" hidden>
+                <p>Most users begin to notice visible changes between 8–12 weeks with consistent use.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" aria-expanded="false">Can women use it?</button>
+              <div class="faq-answer" hidden>
+                <p>Yes. It is suitable for both men and women experiencing hair thinning.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" aria-expanded="false">Is it safe?</button>
+              <div class="faq-answer" hidden>
+                <p>5% Minoxidil is a widely recognized topical solution used globally for hair regrowth. Mild initial shedding may occur during the adjustment phase.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" aria-expanded="false">Do you deliver nationwide?</button>
+              <div class="faq-answer" hidden>
+                <p>Yes. We deliver across Nigeria.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" aria-expanded="false">Do I need a prescription?</button>
+              <div class="faq-answer" hidden>
+                <p>No prescription is required.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="about">
+        <div class="container reveal">
+          <p class="eyebrow">About SG Wellness Hub</p>
+          <h2>About SG Wellness Hub</h2>
+          <p>
+            SG Wellness Hub is committed to delivering trusted wellness and hair care solutions across Nigeria.
+          </p>
+          <p>
+            We understand the impact hair thinning and hair loss can have on confidence. That’s why we focus on supplying quality-tested products backed by structured customer support and reliable nationwide delivery.
+          </p>
+          <p>
+            Our mission is to provide effective, accessible wellness solutions with professionalism, transparency, and integrity.
+          </p>
+          <p><strong>SG Wellness Hub — Confidence Restored.</strong></p>
+        </div>
+      </section>
+
+      <section class="section" id="order">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Checkout</p>
+            <h2>Place Your Order Now</h2>
+          </div>
+
+          <div class="order-layout">
+            <form id="orderForm" class="order-form reveal" novalidate>
+              <div class="form-row">
+                <label for="fullName">Full Name</label>
+                <input id="fullName" name="fullName" type="text" autocomplete="name" required />
+                <small class="error" id="fullNameError"></small>
+              </div>
+
+              <div class="form-row">
+                <label for="phoneNumber">Phone Number</label>
+                <input id="phoneNumber" name="phoneNumber" type="tel" autocomplete="tel" required placeholder="e.g. 08012345678" />
+                <small class="error" id="phoneNumberError"></small>
+              </div>
+
+              <div class="form-row">
+                <label for="address">Delivery Address</label>
+                <textarea id="address" name="address" rows="2" required></textarea>
+                <small class="error" id="addressError"></small>
+              </div>
+
+              <div class="form-row two-col">
+                <div>
+                  <label for="city">City</label>
+                  <input id="city" name="city" type="text" required />
+                  <small class="error" id="cityError"></small>
+                </div>
+                <div>
+                  <label for="landmark">Nearest Landmark</label>
+                  <input id="landmark" name="landmark" type="text" required />
+                  <small class="error" id="landmarkError"></small>
+                </div>
+              </div>
+
+              <div class="form-row two-col">
+                <div>
+                  <label for="quantity">Quantity</label>
+                  <input id="quantity" name="quantity" type="number" min="1" max="20" value="1" required />
+                  <small class="error" id="quantityError"></small>
+                </div>
+                <div>
+                  <label for="fulfillment">Preferred Fulfillment Option</label>
+                  <select id="fulfillment" name="fulfillment" required>
+                    <option value="Full Order">Full Order</option>
+                    <option value="Pay ₦1,000 Commitment Fee First">Pay ₦1,000 Commitment Fee First</option>
+                  </select>
+                  <small class="error" id="fulfillmentError"></small>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="notes">Optional Notes</label>
+                <textarea id="notes" name="notes" rows="2" placeholder="Any extra direction for delivery"></textarea>
+              </div>
+
+              <div class="form-cta-group">
+                <button type="submit" class="btn btn-primary btn-full">Submit Order</button>
+                <button type="button" class="btn btn-whatsapp btn-full" id="orderViaWhatsApp">Order via WhatsApp</button>
+                <button type="button" class="btn btn-commitment btn-full js-pay-commitment">Pay ₦1,000 Commitment Fee</button>
+              </div>
+              <p class="form-help-text">Kindly fill accurate details. Our confirmation team calls before dispatch. Unreachable numbers may lead to order cancellation.</p>
+            </form>
+
+            <aside class="order-summary reveal" aria-label="Order Summary">
+              <h3>Order Summary</h3>
+              <ul>
+                <li><span>Product</span><strong id="summaryProduct">SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)</strong></li>
+                <li><span>Quantity</span><strong id="summaryQuantity">1</strong></li>
+                <li><span>Unit Price</span><strong id="summaryUnitPrice">₦0</strong></li>
+                <li><span>Estimated Product Total</span><strong id="summaryTotal">₦0</strong></li>
+                <li><span>Shipping commitment fee</span><strong id="summaryShippingFee">₦1,000</strong></li>
+              </ul>
+              <div class="summary-note">
+                <p>Nationwide delivery available</p>
+                <p>Pay on delivery in selected locations</p>
+                <p>Our team will call to confirm before dispatch</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="whatsapp-cta">
+        <div class="container whatsapp-cta reveal">
+          <h2>Need Quick Confirmation Before Ordering?</h2>
+          <p>Chat directly with SG Wellness Hub support for stock, city coverage, and dispatch timelines.</p>
+          <a class="btn btn-whatsapp" href="#" id="whatsappSupportBtn">Chat on WhatsApp</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>We respect your privacy. Customer information collected during checkout is used strictly for order processing and delivery purposes. We do not share or sell customer data to third parties.</p>
+        <p>© <span id="year"></span> SG Wellness Hub. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <a href="#" class="floating-whatsapp" id="floatingWhatsapp" aria-label="Chat on WhatsApp">WhatsApp</a>
+
+    <div class="mobile-sticky-bar" aria-label="Quick order actions">
+      <a href="#order" class="btn btn-primary">Order Now</a>
+      <a href="#" class="btn btn-whatsapp" id="mobileWhatsAppBtn">WhatsApp</a>
+      <button type="button" class="btn btn-commitment js-pay-commitment">Pay ₦1,000</button>
+    </div>
+
+    <div class="modal" id="statusModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <h3 id="modalTitle">Order Details Ready</h3>
+        <p id="modalMessage">Redirecting you to WhatsApp...</p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-primary" id="modalProceedBtn">Continue</button>
+          <button type="button" class="btn btn-ghost" id="modalCloseBtn">Close</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

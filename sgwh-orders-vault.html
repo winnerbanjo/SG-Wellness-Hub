@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SG Wellness Hub Orders Vault</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page="admin">
+    <header class="site-header">
+      <div class="container header-wrap">
+        <a href="index.html" class="brand">SG Wellness Hub</a>
+        <nav class="site-nav" aria-label="Admin Navigation">
+          <a href="index.html" class="btn btn-small btn-ghost">Back to Landing</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section section-alt" id="dashboard">
+        <div class="container reveal">
+          <div class="dashboard-head">
+            <p class="eyebrow">Private Admin</p>
+            <h2>Saved Orders (This Device)</h2>
+            <p class="dashboard-note">This page reads orders saved in this browser localStorage only.</p>
+          </div>
+          <div class="dashboard-actions">
+            <button id="exportOrders" class="btn btn-secondary" type="button">Export JSON</button>
+            <button id="clearOrders" class="btn btn-ghost" type="button">Clear Saved Orders</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>City</th>
+                  <th>Qty</th>
+                  <th>Option</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <tr>
+                  <td colspan="6">No orders saved yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Private admin view for SG Wellness Hub.</p>
+      </div>
+    </footer>
+  </body>
+</html>
