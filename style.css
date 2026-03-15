@@ -189,6 +189,11 @@ img {
   box-shadow: 0 8px 20px rgba(18, 55, 40, 0.2);
 }
 
+.btn-order-glow {
+  box-shadow: 0 0 0 4px rgba(29, 91, 63, 0.12), 0 18px 34px rgba(18, 55, 40, 0.24);
+  animation: ctaPulse 2.2s ease-in-out infinite;
+}
+
 .btn-whatsapp {
   background: #22c45e;
   color: #10351f;
@@ -242,6 +247,66 @@ img {
   color: #7b3f13;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+.offer-section {
+  background: linear-gradient(180deg, #fffdf8, #f7f4ee);
+}
+
+.offer-intro {
+  margin-top: 0.5rem;
+  color: var(--text-soft);
+  max-width: 60ch;
+}
+
+.offer-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.offer-card {
+  position: relative;
+  border-radius: var(--radius);
+  border: 1px solid #d7ddd8;
+  background: linear-gradient(180deg, #ffffff, #fbfaf6);
+  box-shadow: var(--shadow);
+  padding: 1.15rem;
+  overflow: hidden;
+}
+
+.offer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #c89f53, var(--green-3));
+}
+
+.offer-badge {
+  display: inline-block;
+  padding: 0.36rem 0.62rem;
+  border-radius: 999px;
+  background: #e8f0ec;
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.offer-card h3 {
+  margin-top: 0.8rem;
+  font-size: 1.9rem;
+  color: var(--green);
+}
+
+.offer-strike {
+  color: #8a6f48;
+  text-decoration: line-through;
+  font-weight: 700;
+  margin: 0.15rem 0 0.45rem;
 }
 
 .hero-card {
@@ -648,6 +713,16 @@ img {
   gap: 0.18rem;
 }
 
+@keyframes ctaPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
 .whatsapp-cta {
   text-align: center;
 }
@@ -846,6 +921,10 @@ th {
 
 @media (min-width: 980px) {
   .benefit-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .offer-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 

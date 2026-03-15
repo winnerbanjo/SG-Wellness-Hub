@@ -63,10 +63,11 @@
         </button>
         <nav id="site-nav" class="site-nav" aria-label="Main Navigation">
           <a href="#benefits">Benefits</a>
+          <a href="#offers">Offers</a>
           <a href="#how-it-works">How It Works</a>
           <a href="#faq">FAQ</a>
           <a href="#order">Order</a>
-          <a href="#order" class="btn btn-small btn-primary">Order Now</a>
+          <a href="#order" class="btn btn-small btn-primary btn-order-glow">Secure Order Now</a>
         </nav>
       </div>
     </header>
@@ -88,7 +89,7 @@
               <li>Nationwide delivery available</li>
             </ul>
             <div class="hero-cta-wrap">
-              <a class="btn btn-primary" href="#order">Order Now</a>
+              <a class="btn btn-primary btn-order-glow" href="#order">Secure Your Spot Now</a>
               <a class="btn btn-whatsapp js-whatsapp-generic" href="#" data-message-type="quick">Chat on WhatsApp</a>
               <button class="btn btn-commitment js-pay-commitment" type="button">Pay ₦1,000 Commitment Fee</button>
             </div>
@@ -98,7 +99,7 @@
               <span>WhatsApp Support</span>
               <span>Quality Assured</span>
             </div>
-            <p class="urgency-note">Fast-moving product. Dispatch slots are handled on a first-confirmed basis.</p>
+            <p class="urgency-note">Limited supply. Offer ends today and returns to normal price tomorrow.</p>
           </div>
 
           <aside class="hero-card reveal" aria-label="Product Spotlight">
@@ -128,6 +129,42 @@
       <section class="star-strip">
         <div class="container">
           <p>★★★★★ Trusted by customers across Nigeria for reliable delivery, support, and product quality.</p>
+        </div>
+      </section>
+
+      <section id="offers" class="section offer-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Today’s Offer</p>
+            <h2>Limited Supply Pricing Available Today</h2>
+            <p class="offer-intro">Secure your spot now. These discounted bundle prices are for today only and go back to normal price tomorrow.</p>
+          </div>
+          <div class="offer-grid">
+            <article class="offer-card reveal">
+              <span class="offer-badge">Starter Pack</span>
+              <h3>₦19,000</h3>
+              <p class="offer-strike">Instead of ₦25,000</p>
+              <p>Best for first-time buyers starting with one bottle.</p>
+            </article>
+            <article class="offer-card reveal">
+              <span class="offer-badge">Best Value</span>
+              <h3>₦33,000</h3>
+              <p class="offer-strike">Instead of ₦50,000</p>
+              <p>Buy 2 and get 1 dropper included.</p>
+            </article>
+            <article class="offer-card reveal">
+              <span class="offer-badge">Bundle Plus</span>
+              <h3>₦44,000</h3>
+              <p class="offer-strike">Instead of ₦75,000</p>
+              <p>Buy 2 + 1 dropper + Minoxidil oil.</p>
+            </article>
+            <article class="offer-card reveal">
+              <span class="offer-badge">Wholesale Deal</span>
+              <h3>₦88,000</h3>
+              <p class="offer-strike">Instead of ₦150,000</p>
+              <p>Buy 5, get 6 plus 1 dropper for the strongest savings.</p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -298,9 +335,18 @@
           <article class="highlight-panel reveal">
             <h3>Serious Order Fast-Track</h3>
             <p>
-              To secure serious orders faster, customers can also pay a ₦1,000 shipping commitment fee before dispatch. This helps us reduce fake orders and process genuine deliveries quicker.
+              Due to a high number of fake and unredeemed orders, we now require a small ₦1,000 commitment fee before processing your order.
             </p>
-            <button class="btn btn-commitment js-pay-commitment" type="button">Pay ₦1,000 Commitment Fee</button>
+            <p>
+              This helps us confirm that only serious customers place orders and allows us to continue offering Payment on Delivery and Free Delivery.
+            </p>
+            <p>
+              The ₦1,000 is not an extra charge. It will be deducted from the total price of your product when it arrives.
+            </p>
+            <p>
+              Example: if your package total is ₦27,000, you will only pay ₦26,000 on delivery after your commitment fee has been confirmed.
+            </p>
+            <button class="btn btn-commitment btn-order-glow js-pay-commitment" type="button">Pay ₦1,000 Commitment Fee</button>
             <small>Supported cities are confirmed during call-back. Current focus: <span id="deliveryCitiesInline">Lagos, Abuja, Port Harcourt, Ibadan, Benin City</span>.</small>
           </article>
         </div>
@@ -426,18 +472,29 @@
 
               <div class="form-row two-col">
                 <div>
+                  <label for="package">Package</label>
+                  <select id="package" name="package" required>
+                    <option value="starter-pack">Starter Pack - ₦19,000 instead of ₦25,000</option>
+                    <option value="buy-2-get-dropper">Buy 2 + 1 Dropper - ₦33,000 instead of ₦50,000</option>
+                    <option value="bundle-plus-oil">Buy 2 + 1 Dropper + Minoxidil Oil - ₦44,000 instead of ₦75,000</option>
+                    <option value="wholesale-6-plus-dropper">Buy 5, Get 6 + 1 Dropper - ₦88,000 instead of ₦150,000</option>
+                  </select>
+                  <small class="error" id="packageError"></small>
+                </div>
+                <div>
                   <label for="quantity">Quantity</label>
                   <input id="quantity" name="quantity" type="number" min="1" max="20" value="1" required />
                   <small class="error" id="quantityError"></small>
                 </div>
-                <div>
-                  <label for="fulfillment">Preferred Fulfillment Option</label>
-                  <select id="fulfillment" name="fulfillment" required>
-                    <option value="Full Order">Full Order</option>
-                    <option value="Pay ₦1,000 Commitment Fee First">Pay ₦1,000 Commitment Fee First</option>
-                  </select>
-                  <small class="error" id="fulfillmentError"></small>
-                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="fulfillment">Preferred Fulfillment Option</label>
+                <select id="fulfillment" name="fulfillment" required>
+                  <option value="Full Order">Full Order</option>
+                  <option value="Pay ₦1,000 Commitment Fee First">Pay ₦1,000 Commitment Fee First</option>
+                </select>
+                <small class="error" id="fulfillmentError"></small>
               </div>
 
               <div class="form-row">
@@ -446,7 +503,7 @@
               </div>
 
               <div class="form-cta-group">
-                <button type="submit" class="btn btn-primary btn-full">Submit Order</button>
+                <button type="submit" class="btn btn-primary btn-full btn-order-glow">Secure My Order Now</button>
                 <button type="button" class="btn btn-whatsapp btn-full" id="orderViaWhatsApp">Order via WhatsApp</button>
                 <button type="button" class="btn btn-commitment btn-full js-pay-commitment">Pay ₦1,000 Commitment Fee</button>
               </div>
@@ -457,12 +514,14 @@
               <h3>Order Summary</h3>
               <ul>
                 <li><span>Product</span><strong id="summaryProduct">SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)</strong></li>
+                <li><span>Selected Package</span><strong id="summaryPackage">Starter Pack</strong></li>
                 <li><span>Quantity</span><strong id="summaryQuantity">1</strong></li>
-                <li><span>Unit Price</span><strong id="summaryUnitPrice">₦0</strong></li>
+                <li><span>Package Price</span><strong id="summaryUnitPrice">₦0</strong></li>
                 <li><span>Estimated Product Total</span><strong id="summaryTotal">₦0</strong></li>
                 <li><span>Shipping commitment fee</span><strong id="summaryShippingFee">₦1,000</strong></li>
               </ul>
               <div class="summary-note">
+                <p>Limited supply. Discounted price ends today.</p>
                 <p>Nationwide delivery available</p>
                 <p>Pay on delivery in selected locations</p>
                 <p>Our team will call to confirm before dispatch</p>
@@ -492,7 +551,7 @@
     <a href="#" class="floating-whatsapp" id="floatingWhatsapp" aria-label="Chat on WhatsApp">WhatsApp</a>
 
     <div class="mobile-sticky-bar" aria-label="Quick order actions">
-      <a href="#order" class="btn btn-primary">Order Now</a>
+      <a href="#order" class="btn btn-primary btn-order-glow">Order Now</a>
       <a href="#" class="btn btn-whatsapp" id="mobileWhatsAppBtn">WhatsApp</a>
       <button type="button" class="btn btn-commitment js-pay-commitment">Pay ₦1,000</button>
     </div>

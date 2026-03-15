@@ -10,17 +10,25 @@
 
 const WHATSAPP_NUMBER = "2349162495435";
 const SHIPPING_FEE = 1000;
-const PRODUCT_PRICE = 18500;
+const PRODUCT_PRICE = 19000;
 const PAYSTACK_PUBLIC_KEY = "";
 const PRODUCT_NAME = "SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)";
 const DELIVERY_CITIES = ["Lagos", "Abuja", "Port Harcourt", "Ibadan", "Benin City"];
 const ORDER_STORAGE_KEY = "sgwellness_orders_v1";
 const ADMIN_ACCESS_PIN = "2401";
+const PACKAGE_OPTIONS = {
+  "starter-pack": { label: "Starter Pack", price: 19000, compareAt: 25000 },
+  "buy-2-get-dropper": { label: "Buy 2 + 1 Dropper", price: 33000, compareAt: 50000 },
+  "bundle-plus-oil": { label: "Buy 2 + 1 Dropper + Minoxidil Oil", price: 44000, compareAt: 75000 },
+  "wholesale-6-plus-dropper": { label: "Buy 5, Get 6 + 1 Dropper", price: 88000, compareAt: 150000 },
+};
 
 const orderForm = document.getElementById("orderForm");
+const packageSelect = document.getElementById("package");
 const quantityInput = document.getElementById("quantity");
 const summaryQuantity = document.getElementById("summaryQuantity");
 const summaryProduct = document.getElementById("summaryProduct");
+const summaryPackage = document.getElementById("summaryPackage");
 const summaryUnitPrice = document.getElementById("summaryUnitPrice");
 const summaryTotal = document.getElementById("summaryTotal");
 const summaryShippingFee = document.getElementById("summaryShippingFee");
@@ -78,16 +86,26 @@ function setYear() {
 
 function setConfigText() {
   if (summaryProduct) summaryProduct.textContent = PRODUCT_NAME;
-  if (summaryUnitPrice) summaryUnitPrice.textContent = formatNaira(PRODUCT_PRICE);
   if (summaryShippingFee) summaryShippingFee.textContent = formatNaira(SHIPPING_FEE);
   if (deliveryCitiesInline) deliveryCitiesInline.textContent = DELIVERY_CITIES.join(", ");
+}
+
+function getSelectedPackage() {
+  const packageKey = packageSelect?.value || "starter-pack";
+  return {
+    key: packageKey,
+    ...(PACKAGE_OPTIONS[packageKey] || PACKAGE_OPTIONS["starter-pack"]),
+  };
 }
 
 function updateSummary() {
   const qty = Number(quantityInput?.value || 1);
   const safeQty = Number.isFinite(qty) && qty > 0 ? qty : 1;
+  const selectedPackage = getSelectedPackage();
   if (summaryQuantity) summaryQuantity.textContent = String(safeQty);
-  if (summaryTotal) summaryTotal.textContent = formatNaira(PRODUCT_PRICE * safeQty);
+  if (summaryPackage) summaryPackage.textContent = selectedPackage.label;
+  if (summaryUnitPrice) summaryUnitPrice.textContent = formatNaira(selectedPackage.price);
+  if (summaryTotal) summaryTotal.textContent = formatNaira(selectedPackage.price * safeQty);
 }
 
 function getFormData() {
@@ -98,6 +116,7 @@ function getFormData() {
     address: String(fd.get("address") || "").trim(),
     city: String(fd.get("city") || "").trim(),
     landmark: String(fd.get("landmark") || "").trim(),
+    packageKey: String(fd.get("package") || "starter-pack").trim(),
     quantity: Number(fd.get("quantity") || 1),
     fulfillment: String(fd.get("fulfillment") || "Full Order").trim(),
     notes: String(fd.get("notes") || "").trim(),
@@ -145,6 +164,11 @@ function validateForm(data) {
     isValid = false;
   }
 
+  if (!PACKAGE_OPTIONS[data.packageKey]) {
+    setFieldError("package", "Select a valid package.");
+    isValid = false;
+  }
+
   if (!Number.isInteger(data.quantity) || data.quantity < 1 || data.quantity > 20) {
     setFieldError("quantity", "Quantity should be between 1 and 20.");
     isValid = false;
@@ -159,19 +183,27 @@ function validateForm(data) {
 }
 
 function buildWhatsappMessage(data) {
-  return `Hello, I want to order ${PRODUCT_NAME}.\n\nFull Name:\n${data.fullName}\nPhone Number:\n${data.phoneNumber}\nAddress:\n${data.address}\nCity:\n${data.city}\nNearest Landmark:\n${data.landmark}\nQuantity:\n${data.quantity}\nFulfillment Option:\n${data.fulfillment}\nAdditional Notes:\n${data.notes || "N/A"}\n\nPlease confirm availability and delivery details.`;
+  const selectedPackage = PACKAGE_OPTIONS[data.packageKey];
+  const total = selectedPackage.price * data.quantity;
+  return `Hello, I want to order ${PRODUCT_NAME}.\n\nSelected Package:\n${selectedPackage.label}\nPackage Price:\n${formatNaira(selectedPackage.price)}\nQuantity:\n${data.quantity}\nEstimated Product Total:\n${formatNaira(total)}\nFulfillment Option:\n${data.fulfillment}\n\nFull Name:\n${data.fullName}\nPhone Number:\n${data.phoneNumber}\nAddress:\n${data.address}\nCity:\n${data.city}\nNearest Landmark:\n${data.landmark}\nAdditional Notes:\n${data.notes || "N/A"}\n\nPlease confirm availability and delivery details.`;
 }
 
 function createOrderPayload(data) {
   const now = new Date();
-  const productTotal = PRODUCT_PRICE * data.quantity;
+  const selectedPackage = PACKAGE_OPTIONS[data.packageKey];
+  const productTotal = selectedPackage.price * data.quantity;
   return {
     id: `SG-${now.getTime()}`,
     createdAtISO: now.toISOString(),
     createdAtReadable: now.toLocaleString("en-NG", { hour12: true }),
     productName: PRODUCT_NAME,
+    selectedPackage: {
+      key: data.packageKey,
+      label: selectedPackage.label,
+      compareAt: selectedPackage.compareAt,
+    },
     pricing: {
-      productPrice: PRODUCT_PRICE,
+      productPrice: selectedPackage.price,
       quantity: data.quantity,
       productTotal,
       shippingCommitmentFee: SHIPPING_FEE,
@@ -417,7 +449,7 @@ function setupRevealAnimations() {
 }
 
 function bindWhatsAppButtons() {
-  const genericMessage = `Hello, I want to order ${PRODUCT_NAME}. Please confirm price, stock, and delivery details.`;
+  const genericMessage = `Hello, I want to order ${PRODUCT_NAME}. Please confirm today's offer price, stock, and delivery details.`;
   const clickHandler = (event) => {
     event.preventDefault();
     openWhatsApp(genericMessage);
@@ -528,6 +560,9 @@ function init() {
   renderOrders();
   updateSummary();
 
+  if (packageSelect) {
+    packageSelect.addEventListener("change", updateSummary);
+  }
   if (quantityInput) {
     quantityInput.addEventListener("input", updateSummary);
     quantityInput.addEventListener("change", updateSummary);
