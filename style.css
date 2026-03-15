@@ -170,9 +170,10 @@ img {
 .btn {
   border: 0;
   border-radius: 999px;
-  padding: 0.88rem 1.2rem;
-  font-weight: 700;
-  font-size: 0.92rem;
+  padding: 0.95rem 1.3rem;
+  font-weight: 800;
+  font-size: 0.96rem;
+  letter-spacing: 0.01em;
   line-height: 1;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
@@ -184,25 +185,28 @@ img {
 }
 
 .btn-primary {
-  background: linear-gradient(140deg, var(--green), var(--green-3));
-  color: #f6fffa;
-  box-shadow: 0 8px 20px rgba(18, 55, 40, 0.2);
+  background: linear-gradient(140deg, #0f2f22, #1f6a49);
+  color: #ffffff;
+  box-shadow: 0 14px 28px rgba(18, 55, 40, 0.28);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
 }
 
 .btn-order-glow {
-  box-shadow: 0 0 0 4px rgba(29, 91, 63, 0.12), 0 18px 34px rgba(18, 55, 40, 0.24);
+  box-shadow: 0 0 0 5px rgba(29, 91, 63, 0.14), 0 20px 38px rgba(18, 55, 40, 0.32);
   animation: ctaPulse 2.2s ease-in-out infinite;
 }
 
 .btn-whatsapp {
-  background: #22c45e;
-  color: #10351f;
+  background: #25d366;
+  color: #072513;
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.22);
 }
 
 .btn-commitment {
-  background: #e8f0ec;
-  color: var(--green);
-  border: 1px solid #cddcd5;
+  background: #fff7e7;
+  color: #5e3b00;
+  border: 1px solid #e6d2a6;
+  box-shadow: 0 8px 18px rgba(172, 132, 47, 0.12);
 }
 
 .btn-secondary {
@@ -217,12 +221,13 @@ img {
 }
 
 .btn-small {
-  padding: 0.6rem 0.92rem;
-  font-size: 0.85rem;
+  padding: 0.72rem 1rem;
+  font-size: 0.88rem;
 }
 
 .btn-full {
   width: 100%;
+  min-height: 54px;
 }
 
 .trust-badges {
@@ -792,11 +797,11 @@ th {
   bottom: 5.1rem;
   z-index: 70;
   background: #25d366;
-  color: #0f3922;
+  color: #082414;
   font-weight: 800;
   border-radius: 999px;
-  padding: 0.85rem 1rem;
-  box-shadow: 0 10px 24px rgba(15, 57, 34, 0.2);
+  padding: 0.95rem 1.1rem;
+  box-shadow: 0 14px 28px rgba(15, 57, 34, 0.22);
 }
 
 .mobile-sticky-bar {
@@ -815,8 +820,9 @@ th {
 
 .mobile-sticky-bar .btn {
   border-radius: 12px;
-  padding: 0.75rem 0.5rem;
-  font-size: 0.78rem;
+  padding: 0.9rem 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 800;
 }
 
 .menu-toggle {
