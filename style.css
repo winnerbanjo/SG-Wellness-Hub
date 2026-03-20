@@ -103,9 +103,24 @@ img {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   font-weight: 800;
   color: var(--green);
   font-size: 1.1rem;
+}
+
+.brand-logo {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.brand-text {
+  display: inline-block;
 }
 
 .site-nav {
@@ -312,6 +327,31 @@ img {
   text-decoration: line-through;
   font-weight: 700;
   margin: 0.15rem 0 0.45rem;
+}
+
+.offer-card p:last-child {
+  color: var(--text-soft);
+}
+
+.video-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.video-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: 0.7rem;
+}
+
+.video-card video {
+  width: 100%;
+  border-radius: 12px;
+  background: #000;
+  display: block;
 }
 
 .hero-card {
@@ -932,6 +972,10 @@ th {
 
   .offer-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .timeline-grid,

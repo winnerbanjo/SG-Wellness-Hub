@@ -18,6 +18,7 @@
          - SHIPPING_FEE
          - DELIVERY_CITIES
       3) Optional favicon: replace images/favicon.png
+      4) Brand logo path is set to images/logo.jpeg
     -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -57,7 +58,10 @@
 
     <header class="site-header">
       <div class="container header-wrap">
-        <a href="#top" class="brand" id="top">SG Wellness Hub</a>
+        <a href="#top" class="brand" id="top" aria-label="SG Wellness Hub home">
+          <img src="images/logo.jpeg" alt="SG Wellness Hub logo" class="brand-logo" data-fallback-label="SG Wellness Hub" />
+          <span class="brand-text">SG Wellness Hub</span>
+        </a>
         <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
           <span></span><span></span><span></span>
         </button>
@@ -87,6 +91,7 @@
               <li>Suitable for men and women</li>
               <li>Easy-to-use topical solution</li>
               <li>Nationwide delivery available</li>
+              <li>WhatsApp support and usage guidance available</li>
             </ul>
             <div class="hero-cta-wrap">
               <a class="btn btn-primary btn-order-glow" href="#order">Secure Your Spot Now</a>
@@ -163,6 +168,55 @@
               <h3>₦88,000</h3>
               <p class="offer-strike">Instead of ₦150,000</p>
               <p>Buy 5, get 6 plus 1 dropper for the strongest savings.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="upsell">
+        <div class="container split-grid">
+          <article class="reveal">
+            <p class="eyebrow">Boost Your Results</p>
+            <h2>Add Derma Roller To Your Routine</h2>
+            <p>
+              For best results, many customers combine Minoxidil with a Derma roller as part of their hair growth routine. Using both together can help support a healthier scalp environment and improve the overall effectiveness of your treatment.
+            </p>
+            <p class="compliance-note">Recommendation: add Derma roller to your order today and give your hair routine extra support.</p>
+          </article>
+          <article class="reveal">
+            <p class="eyebrow">Derma Roller Pricing</p>
+            <h2>Special Add-On Pricing</h2>
+            <ol class="steps-list">
+              <li>₦7,000 when purchased alone</li>
+              <li>₦4,000 promo price when purchased together with Minoxidil</li>
+              <li>Limited offer available while promo stock lasts</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="usage-videos">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Usage Support</p>
+            <h2>Watch Quick Usage Videos</h2>
+            <p class="offer-intro">Need help getting started? These short videos can guide customers on consistent routine support. For personal help, chat with us on WhatsApp.</p>
+          </div>
+          <div class="video-grid">
+            <article class="video-card reveal">
+              <video controls preload="metadata" playsinline>
+                <source src="images/WhatsApp Video 2026-03-18 at 1.45.44 PM.mp4" type="video/mp4" />
+              </video>
+            </article>
+            <article class="video-card reveal">
+              <video controls preload="metadata" playsinline>
+                <source src="images/WhatsApp Video 2026-03-18 at 1.45.45 PM.mp4" type="video/mp4" />
+              </video>
+            </article>
+            <article class="video-card reveal">
+              <video controls preload="metadata" playsinline>
+                <source src="images/WhatsApp Video 2026-03-18 at 1.45.45 PM (1).mp4" type="video/mp4" />
+              </video>
             </article>
           </div>
         </div>
@@ -317,6 +371,37 @@
         </div>
       </section>
 
+      <section class="section" id="trust-notes">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Trust Notes</p>
+            <h2>What Customers Typically Value Before Ordering</h2>
+          </div>
+          <div class="benefit-grid">
+            <article class="info-card reveal">
+              <div class="icon-circle">01</div>
+              <h3>Clear pricing</h3>
+              <p>Bundle pricing, commitment fee explanation, and call confirmation are shown upfront before dispatch.</p>
+            </article>
+            <article class="info-card reveal">
+              <div class="icon-circle">02</div>
+              <h3>Follow-up support</h3>
+              <p>Customers can reach support on WhatsApp for order updates and usage guidance.</p>
+            </article>
+            <article class="info-card reveal">
+              <div class="icon-circle">03</div>
+              <h3>Structured dispatch</h3>
+              <p>Orders are confirmed before shipping to reduce delivery issues and failed drop-offs.</p>
+            </article>
+            <article class="info-card reveal">
+              <div class="icon-circle">04</div>
+              <h3>Routine-focused use</h3>
+              <p>Hair growth support works best with consistency, good application, and the right add-ons where needed.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="delivery-policy">
         <div class="container split-grid">
           <article class="info-panel reveal">
@@ -409,6 +494,18 @@
                 <p>No prescription is required.</p>
               </div>
             </article>
+            <article class="faq-item">
+              <button class="faq-question" aria-expanded="false">Do you have videos on how to use it?</button>
+              <div class="faq-answer" hidden>
+                <p>Usage guidance is available through our WhatsApp support. Message us after ordering if you want help with application steps and routine support.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" aria-expanded="false">Can I add Derma roller to my order?</button>
+              <div class="faq-answer" hidden>
+                <p>Yes. Derma roller is available at ₦7,000 alone or ₦4,000 when added to a Minoxidil order, subject to promo availability.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -489,6 +586,15 @@
               </div>
 
               <div class="form-row">
+                <label for="addOn">Optional Add-On</label>
+                <select id="addOn" name="addOn">
+                  <option value="none">No add-on</option>
+                  <option value="derma-roller-bundle">Add Derma Roller - ₦4,000 with Minoxidil</option>
+                  <option value="derma-roller-alone">Derma Roller Only - ₦7,000</option>
+                </select>
+              </div>
+
+              <div class="form-row">
                 <label for="fulfillment">Preferred Fulfillment Option</label>
                 <select id="fulfillment" name="fulfillment" required>
                   <option value="Full Order">Full Order</option>
@@ -515,8 +621,10 @@
               <ul>
                 <li><span>Product</span><strong id="summaryProduct">SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)</strong></li>
                 <li><span>Selected Package</span><strong id="summaryPackage">Starter Pack</strong></li>
+                <li><span>Add-On</span><strong id="summaryAddOn">No add-on</strong></li>
                 <li><span>Quantity</span><strong id="summaryQuantity">1</strong></li>
                 <li><span>Package Price</span><strong id="summaryUnitPrice">₦0</strong></li>
+                <li><span>Add-On Price</span><strong id="summaryAddOnPrice">₦0</strong></li>
                 <li><span>Estimated Product Total</span><strong id="summaryTotal">₦0</strong></li>
                 <li><span>Shipping commitment fee</span><strong id="summaryShippingFee">₦1,000</strong></li>
               </ul>
@@ -534,7 +642,7 @@
       <section class="section section-alt" id="whatsapp-cta">
         <div class="container whatsapp-cta reveal">
           <h2>Need Quick Confirmation Before Ordering?</h2>
-          <p>Chat directly with SG Wellness Hub support for stock, city coverage, and dispatch timelines.</p>
+          <p>Chat directly with SG Wellness Hub support for stock, city coverage, dispatch timelines, and usage guidance.</p>
           <a class="btn btn-whatsapp" href="#" id="whatsappSupportBtn">Chat on WhatsApp</a>
         </div>
       </section>

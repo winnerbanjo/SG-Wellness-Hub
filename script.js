@@ -8,7 +8,7 @@
   - DELIVERY_CITIES: list of highlighted delivery cities for quick display
 */
 
-const WHATSAPP_NUMBER = "2349162495435";
+const WHATSAPP_NUMBER = "2348077271167";
 const SHIPPING_FEE = 1000;
 const PRODUCT_PRICE = 19000;
 const PAYSTACK_PUBLIC_KEY = "";
@@ -22,13 +22,21 @@ const PACKAGE_OPTIONS = {
   "bundle-plus-oil": { label: "Buy 2 + 1 Dropper + Minoxidil Oil", price: 44000, compareAt: 75000 },
   "wholesale-6-plus-dropper": { label: "Buy 5, Get 6 + 1 Dropper", price: 88000, compareAt: 150000 },
 };
+const ADD_ON_OPTIONS = {
+  none: { label: "No add-on", price: 0 },
+  "derma-roller-bundle": { label: "Derma Roller Add-On", price: 4000 },
+  "derma-roller-alone": { label: "Derma Roller Only", price: 7000 },
+};
 
 const orderForm = document.getElementById("orderForm");
 const packageSelect = document.getElementById("package");
+const addOnSelect = document.getElementById("addOn");
 const quantityInput = document.getElementById("quantity");
 const summaryQuantity = document.getElementById("summaryQuantity");
 const summaryProduct = document.getElementById("summaryProduct");
 const summaryPackage = document.getElementById("summaryPackage");
+const summaryAddOn = document.getElementById("summaryAddOn");
+const summaryAddOnPrice = document.getElementById("summaryAddOnPrice");
 const summaryUnitPrice = document.getElementById("summaryUnitPrice");
 const summaryTotal = document.getElementById("summaryTotal");
 const summaryShippingFee = document.getElementById("summaryShippingFee");
@@ -102,10 +110,15 @@ function updateSummary() {
   const qty = Number(quantityInput?.value || 1);
   const safeQty = Number.isFinite(qty) && qty > 0 ? qty : 1;
   const selectedPackage = getSelectedPackage();
+  const selectedAddOn = ADD_ON_OPTIONS[addOnSelect?.value || "none"] || ADD_ON_OPTIONS.none;
+  const productTotal = selectedPackage.price * safeQty;
+  const addOnTotal = selectedAddOn.price * safeQty;
   if (summaryQuantity) summaryQuantity.textContent = String(safeQty);
   if (summaryPackage) summaryPackage.textContent = selectedPackage.label;
+  if (summaryAddOn) summaryAddOn.textContent = selectedAddOn.label;
   if (summaryUnitPrice) summaryUnitPrice.textContent = formatNaira(selectedPackage.price);
-  if (summaryTotal) summaryTotal.textContent = formatNaira(selectedPackage.price * safeQty);
+  if (summaryAddOnPrice) summaryAddOnPrice.textContent = formatNaira(selectedAddOn.price);
+  if (summaryTotal) summaryTotal.textContent = formatNaira(productTotal + addOnTotal);
 }
 
 function getFormData() {
@@ -117,6 +130,7 @@ function getFormData() {
     city: String(fd.get("city") || "").trim(),
     landmark: String(fd.get("landmark") || "").trim(),
     packageKey: String(fd.get("package") || "starter-pack").trim(),
+    addOnKey: String(fd.get("addOn") || "none").trim(),
     quantity: Number(fd.get("quantity") || 1),
     fulfillment: String(fd.get("fulfillment") || "Full Order").trim(),
     notes: String(fd.get("notes") || "").trim(),
@@ -169,6 +183,10 @@ function validateForm(data) {
     isValid = false;
   }
 
+  if (!ADD_ON_OPTIONS[data.addOnKey]) {
+    isValid = false;
+  }
+
   if (!Number.isInteger(data.quantity) || data.quantity < 1 || data.quantity > 20) {
     setFieldError("quantity", "Quantity should be between 1 and 20.");
     isValid = false;
@@ -184,14 +202,17 @@ function validateForm(data) {
 
 function buildWhatsappMessage(data) {
   const selectedPackage = PACKAGE_OPTIONS[data.packageKey];
-  const total = selectedPackage.price * data.quantity;
-  return `Hello, I want to order ${PRODUCT_NAME}.\n\nSelected Package:\n${selectedPackage.label}\nPackage Price:\n${formatNaira(selectedPackage.price)}\nQuantity:\n${data.quantity}\nEstimated Product Total:\n${formatNaira(total)}\nFulfillment Option:\n${data.fulfillment}\n\nFull Name:\n${data.fullName}\nPhone Number:\n${data.phoneNumber}\nAddress:\n${data.address}\nCity:\n${data.city}\nNearest Landmark:\n${data.landmark}\nAdditional Notes:\n${data.notes || "N/A"}\n\nPlease confirm availability and delivery details.`;
+  const selectedAddOn = ADD_ON_OPTIONS[data.addOnKey];
+  const total = selectedPackage.price * data.quantity + selectedAddOn.price * data.quantity;
+  return `Hello, I want to order ${PRODUCT_NAME}.\n\nSelected Package:\n${selectedPackage.label}\nPackage Price:\n${formatNaira(selectedPackage.price)}\nAdd-On:\n${selectedAddOn.label}\nAdd-On Price:\n${formatNaira(selectedAddOn.price)}\nQuantity:\n${data.quantity}\nEstimated Product Total:\n${formatNaira(total)}\nFulfillment Option:\n${data.fulfillment}\n\nFull Name:\n${data.fullName}\nPhone Number:\n${data.phoneNumber}\nAddress:\n${data.address}\nCity:\n${data.city}\nNearest Landmark:\n${data.landmark}\nAdditional Notes:\n${data.notes || "N/A"}\n\nPlease confirm availability, delivery details, and usage support.`;
 }
 
 function createOrderPayload(data) {
   const now = new Date();
   const selectedPackage = PACKAGE_OPTIONS[data.packageKey];
+  const selectedAddOn = ADD_ON_OPTIONS[data.addOnKey];
   const productTotal = selectedPackage.price * data.quantity;
+  const addOnTotal = selectedAddOn.price * data.quantity;
   return {
     id: `SG-${now.getTime()}`,
     createdAtISO: now.toISOString(),
@@ -202,10 +223,16 @@ function createOrderPayload(data) {
       label: selectedPackage.label,
       compareAt: selectedPackage.compareAt,
     },
+    addOn: {
+      key: data.addOnKey,
+      label: selectedAddOn.label,
+      price: selectedAddOn.price,
+    },
     pricing: {
       productPrice: selectedPackage.price,
+      addOnPrice: selectedAddOn.price,
       quantity: data.quantity,
-      productTotal,
+      productTotal: productTotal + addOnTotal,
       shippingCommitmentFee: SHIPPING_FEE,
     },
     customer: {
@@ -449,7 +476,7 @@ function setupRevealAnimations() {
 }
 
 function bindWhatsAppButtons() {
-  const genericMessage = `Hello, I want to order ${PRODUCT_NAME}. Please confirm today's offer price, stock, and delivery details.`;
+  const genericMessage = `Hello, I want to order ${PRODUCT_NAME}. Please confirm today's offer price, Derma roller availability, stock, and delivery details.`;
   const clickHandler = (event) => {
     event.preventDefault();
     openWhatsApp(genericMessage);
@@ -562,6 +589,9 @@ function init() {
 
   if (packageSelect) {
     packageSelect.addEventListener("change", updateSummary);
+  }
+  if (addOnSelect) {
+    addOnSelect.addEventListener("change", updateSummary);
   }
   if (quantityInput) {
     quantityInput.addEventListener("input", updateSummary);
