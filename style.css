@@ -236,13 +236,24 @@ img {
   text-shadow: none;
 }
 
-.site-nav .btn-primary,
-.hero-cta-wrap .btn-primary,
-.form-cta-group .btn-primary,
-.mobile-sticky-bar .btn-primary {
-  color: #ffffff;
-  background: linear-gradient(140deg, #b56e06, #ecad2b);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+.btn-order-primary,
+.site-nav a.btn-order-primary,
+.hero-cta-wrap a.btn-order-primary,
+.form-cta-group button.btn-order-primary,
+.mobile-sticky-bar a.btn-order-primary {
+  color: #ffffff !important;
+  background: linear-gradient(140deg, #c26f00, #f2a51f) !important;
+  border: 1px solid rgba(122, 69, 0, 0.26);
+  box-shadow: 0 18px 32px rgba(194, 111, 0, 0.34) !important;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.14);
+}
+
+.btn-order-primary:hover,
+.btn-order-primary:focus-visible,
+.site-nav a.btn-order-primary:hover,
+.site-nav a.btn-order-primary:focus-visible {
+  color: #ffffff !important;
+  background: linear-gradient(140deg, #ae6200, #e89911) !important;
 }
 
 .btn-order-glow {
