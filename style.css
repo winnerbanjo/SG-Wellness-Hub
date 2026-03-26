@@ -769,6 +769,20 @@ img {
   margin-bottom: 0.8rem;
 }
 
+.payment-confirm-box {
+  margin-bottom: 0.9rem;
+  padding: 1rem;
+  border: 1px solid #d9dfdb;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fffdf8, #f6f4ee);
+}
+
+.payment-confirm-box h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #173d2d;
+}
+
 .form-row label {
   font-size: 0.86rem;
   font-weight: 700;

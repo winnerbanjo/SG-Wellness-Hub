@@ -35,11 +35,14 @@ const orderForm = document.getElementById("orderForm");
 const packageSelect = document.getElementById("package");
 const addOnSelect = document.getElementById("addOn");
 const quantityInput = document.getElementById("quantity");
+const paymentStatusSelect = document.getElementById("paymentStatus");
+const paymentMetaFields = document.getElementById("paymentMetaFields");
 const summaryQuantity = document.getElementById("summaryQuantity");
 const summaryProduct = document.getElementById("summaryProduct");
 const summaryPackage = document.getElementById("summaryPackage");
 const summaryAddOn = document.getElementById("summaryAddOn");
 const summaryAddOnPrice = document.getElementById("summaryAddOnPrice");
+const summaryPaymentStatus = document.getElementById("summaryPaymentStatus");
 const summaryUnitPrice = document.getElementById("summaryUnitPrice");
 const summaryTotal = document.getElementById("summaryTotal");
 const summaryShippingFee = document.getElementById("summaryShippingFee");
@@ -114,6 +117,7 @@ function updateSummary() {
   const safeQty = Number.isFinite(qty) && qty > 0 ? qty : 1;
   const selectedPackage = getSelectedPackage();
   const selectedAddOn = ADD_ON_OPTIONS[addOnSelect?.value || "none"] || ADD_ON_OPTIONS.none;
+  const paymentStatus = paymentStatusSelect?.value === "paid" ? "Paid, notify on WhatsApp" : "Not paid yet";
   const productTotal = selectedPackage.price * safeQty;
   const addOnTotal = selectedAddOn.price * safeQty;
   if (summaryQuantity) summaryQuantity.textContent = String(safeQty);
@@ -122,6 +126,7 @@ function updateSummary() {
   if (summaryUnitPrice) summaryUnitPrice.textContent = formatNaira(selectedPackage.price);
   if (summaryAddOnPrice) summaryAddOnPrice.textContent = formatNaira(selectedAddOn.price);
   if (summaryTotal) summaryTotal.textContent = formatNaira(productTotal + addOnTotal);
+  if (summaryPaymentStatus) summaryPaymentStatus.textContent = paymentStatus;
 }
 
 function getFormData() {
@@ -136,6 +141,9 @@ function getFormData() {
     addOnKey: String(fd.get("addOn") || "none").trim(),
     quantity: Number(fd.get("quantity") || 1),
     fulfillment: String(fd.get("fulfillment") || "Full Order").trim(),
+    paymentStatus: String(fd.get("paymentStatus") || "not-paid").trim(),
+    paymentName: String(fd.get("paymentName") || "").trim(),
+    paymentReference: String(fd.get("paymentReference") || "").trim(),
     notes: String(fd.get("notes") || "").trim(),
   };
 }
@@ -200,6 +208,20 @@ function validateForm(data) {
     isValid = false;
   }
 
+  if (!["not-paid", "paid"].includes(data.paymentStatus)) {
+    isValid = false;
+  }
+
+  if (data.paymentStatus === "paid" && data.paymentName.length < 2) {
+    setFieldError("paymentName", "Enter the name used for the transfer.");
+    isValid = false;
+  }
+
+  if (data.paymentStatus === "paid" && data.paymentReference.length < 2) {
+    setFieldError("paymentReference", "Enter a transfer reference or time sent.");
+    isValid = false;
+  }
+
   return isValid;
 }
 
@@ -207,7 +229,11 @@ function buildWhatsappMessage(data) {
   const selectedPackage = PACKAGE_OPTIONS[data.packageKey];
   const selectedAddOn = ADD_ON_OPTIONS[data.addOnKey];
   const total = selectedPackage.price * data.quantity + selectedAddOn.price * data.quantity;
-  return `Hello, I want to order ${PRODUCT_NAME}.\n\nSelected Package:\n${selectedPackage.label}\nPackage Price:\n${formatNaira(selectedPackage.price)}\nAdd-On:\n${selectedAddOn.label}\nAdd-On Price:\n${formatNaira(selectedAddOn.price)}\nQuantity:\n${data.quantity}\nEstimated Product Total:\n${formatNaira(total)}\nFulfillment Option:\n${data.fulfillment}\n\nFull Name:\n${data.fullName}\nPhone Number:\n${data.phoneNumber}\nAddress:\n${data.address}\nCity:\n${data.city}\nNearest Landmark:\n${data.landmark}\nAdditional Notes:\n${data.notes || "N/A"}\n\nPlease confirm availability, delivery details, and usage support.`;
+  const paymentBlock =
+    data.paymentStatus === "paid"
+      ? `Commitment Fee Payment:\nI have paid\nName Used For Transfer:\n${data.paymentName}\nPayment Reference / Time Sent:\n${data.paymentReference}\n`
+      : "Commitment Fee Payment:\nI have not paid yet\n";
+  return `Hello, I want to order ${PRODUCT_NAME}.\n\nSelected Package:\n${selectedPackage.label}\nPackage Price:\n${formatNaira(selectedPackage.price)}\nAdd-On:\n${selectedAddOn.label}\nAdd-On Price:\n${formatNaira(selectedAddOn.price)}\nQuantity:\n${data.quantity}\nEstimated Product Total:\n${formatNaira(total)}\nFulfillment Option:\n${data.fulfillment}\n${paymentBlock}\nFull Name:\n${data.fullName}\nPhone Number:\n${data.phoneNumber}\nAddress:\n${data.address}\nCity:\n${data.city}\nNearest Landmark:\n${data.landmark}\nAdditional Notes:\n${data.notes || "N/A"}\n\nPlease confirm availability, delivery details, and usage support.`;
 }
 
 function createOrderPayload(data) {
@@ -230,6 +256,11 @@ function createOrderPayload(data) {
       key: data.addOnKey,
       label: selectedAddOn.label,
       price: selectedAddOn.price,
+    },
+    payment: {
+      status: data.paymentStatus,
+      paymentName: data.paymentName,
+      paymentReference: data.paymentReference,
     },
     pricing: {
       productPrice: selectedPackage.price,
@@ -478,6 +509,19 @@ function setupRevealAnimations() {
   revealEls.forEach((el) => observer.observe(el));
 }
 
+function setupPaymentFields() {
+  if (!paymentStatusSelect || !paymentMetaFields) return;
+
+  const toggleFields = () => {
+    const isPaid = paymentStatusSelect.value === "paid";
+    paymentMetaFields.hidden = !isPaid;
+    updateSummary();
+  };
+
+  paymentStatusSelect.addEventListener("change", toggleFields);
+  toggleFields();
+}
+
 function bindWhatsAppButtons() {
   const genericMessage = `Hello, I want to order ${PRODUCT_NAME}. Please confirm today's offer price, Derma roller availability, stock, and delivery details.`;
   const clickHandler = (event) => {
@@ -583,6 +627,7 @@ function init() {
   setupGallery();
   setupFaq();
   setupRevealAnimations();
+  setupPaymentFields();
   bindWhatsAppButtons();
   setupCommitmentButtons();
   setupDashboardActions();
