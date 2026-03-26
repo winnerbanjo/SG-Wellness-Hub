@@ -345,6 +345,23 @@ img {
   overflow: hidden;
 }
 
+.offer-card-media {
+  margin: -1.15rem -1.15rem 0.9rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e7ece9;
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.offer-card-media img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: #fff;
+}
+
 .offer-card::before {
   content: "";
   position: absolute;
