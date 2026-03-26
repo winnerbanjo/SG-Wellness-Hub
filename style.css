@@ -601,6 +601,26 @@ img {
   color: #5a625e;
 }
 
+.account-card {
+  margin: 0.9rem 0;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #d8dfda;
+  box-shadow: 0 10px 22px rgba(17, 31, 25, 0.06);
+}
+
+.account-card h4 {
+  margin-bottom: 0.45rem;
+  color: var(--green);
+}
+
+.account-note {
+  margin-top: 0.45rem;
+  color: #5a625e;
+  font-size: 0.88rem;
+}
+
 .faq-list {
   margin-top: 1.2rem;
   display: grid;

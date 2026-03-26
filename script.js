@@ -16,6 +16,9 @@ const PRODUCT_NAME = "SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)";
 const DELIVERY_CITIES = ["Lagos", "Abuja", "Port Harcourt", "Ibadan", "Benin City"];
 const ORDER_STORAGE_KEY = "sgwellness_orders_v1";
 const ADMIN_ACCESS_PIN = "2401";
+const BANK_NAME = "GTBank";
+const ACCOUNT_NUMBER = "0878290236";
+const ACCOUNT_NAME = "Oballum Victory Uzochukwu";
 const PACKAGE_OPTIONS = {
   "starter-pack": { label: "Starter Pack", price: 19000, compareAt: 25000 },
   "buy-2-get-dropper": { label: "Buy 2 + 1 Dropper", price: 33000, compareAt: 50000 },
@@ -314,14 +317,14 @@ function handleCommitmentPayment() {
   const amountInKobo = SHIPPING_FEE * 100;
   const supportMessage = `Hello, I want to pay the ${formatNaira(
     SHIPPING_FEE
-  )} commitment fee for ${PRODUCT_NAME}. Please guide me.`;
+  )} commitment fee for ${PRODUCT_NAME}. Bank details received: ${BANK_NAME}, ${ACCOUNT_NUMBER}, ${ACCOUNT_NAME}. Please confirm once payment is seen.`;
 
   if (!PAYSTACK_PUBLIC_KEY || typeof window.PaystackPop === "undefined") {
     showModal({
-      title: "Payment Setup Needed",
+      title: "Bank Transfer Available",
       message:
-        "Commitment fee payment is currently not configured on this page. Please continue via WhatsApp for manual payment support.",
-      proceedLabel: "Chat on WhatsApp",
+        `Pay ${formatNaira(SHIPPING_FEE)} to ${BANK_NAME} | ${ACCOUNT_NUMBER} | ${ACCOUNT_NAME}, then continue to WhatsApp with your payment proof for confirmation.`,
+      proceedLabel: "Send Proof on WhatsApp",
       onProceed: () => openWhatsApp(supportMessage),
     });
     return;
