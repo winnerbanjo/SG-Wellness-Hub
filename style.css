@@ -400,6 +400,28 @@ img {
   color: var(--text-soft);
 }
 
+.upsell-media-grid {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.upsell-media-card {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #dfe5e2;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.upsell-media-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
 .video-grid {
   display: grid;
   gap: 1rem;
@@ -1063,6 +1085,10 @@ th {
 
   .video-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .upsell-media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .timeline-grid,
