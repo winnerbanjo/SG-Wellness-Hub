@@ -76,13 +76,14 @@ img {
 }
 
 .announcement-bar {
-  background: var(--green);
-  color: #eff7f3;
+  background: linear-gradient(90deg, #0c241a, #144734, #0c241a);
+  color: #ffffff;
   text-align: center;
-  font-size: 0.78rem;
-  padding: 0.65rem 1rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  font-size: 0.92rem;
+  padding: 0.85rem 1rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
 }
 
 .site-header {
@@ -182,6 +183,34 @@ img {
   gap: 0.7rem;
 }
 
+.hero-commitment-box {
+  margin-top: 1rem;
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid #d7ddda;
+  background: linear-gradient(180deg, #fffef8, #f7f4ec);
+  box-shadow: 0 12px 24px rgba(24, 37, 31, 0.06);
+}
+
+.hero-commitment-box h3 {
+  margin-bottom: 0.45rem;
+  font-size: 1rem;
+  color: #173d2d;
+}
+
+.hero-commitment-box p + p {
+  margin-top: 0.45rem;
+}
+
+.hero-commitment-box p {
+  color: #47544e;
+}
+
+.hero-commitment-example {
+  color: #7b4d10;
+  font-weight: 800;
+}
+
 .btn {
   border: 0;
   border-radius: 999px;
@@ -200,14 +229,24 @@ img {
 }
 
 .btn-primary {
-  background: linear-gradient(140deg, #0f2f22, #1f6a49);
+  background: linear-gradient(140deg, #d08b13, #f1b93a);
+  color: #1b1403;
+  border: 1px solid rgba(128, 82, 0, 0.2);
+  box-shadow: 0 16px 28px rgba(208, 139, 19, 0.34);
+  text-shadow: none;
+}
+
+.site-nav .btn-primary,
+.hero-cta-wrap .btn-primary,
+.form-cta-group .btn-primary,
+.mobile-sticky-bar .btn-primary {
   color: #ffffff;
-  box-shadow: 0 14px 28px rgba(18, 55, 40, 0.28);
+  background: linear-gradient(140deg, #b56e06, #ecad2b);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
 }
 
 .btn-order-glow {
-  box-shadow: 0 0 0 5px rgba(29, 91, 63, 0.14), 0 20px 38px rgba(18, 55, 40, 0.32);
+  box-shadow: 0 0 0 5px rgba(237, 174, 50, 0.18), 0 22px 42px rgba(181, 110, 6, 0.34);
   animation: ctaPulse 2.2s ease-in-out infinite;
 }
 
