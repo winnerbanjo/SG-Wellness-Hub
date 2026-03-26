@@ -332,6 +332,145 @@
         </div>
       </section>
 
+      <section class="section" id="order">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Checkout</p>
+            <h2>Place Your Order Now</h2>
+          </div>
+
+          <div class="order-layout">
+            <form id="orderForm" class="order-form reveal" novalidate>
+              <div class="form-row">
+                <label for="fullName">Full Name</label>
+                <input id="fullName" name="fullName" type="text" autocomplete="name" required />
+                <small class="error" id="fullNameError"></small>
+              </div>
+
+              <div class="form-row">
+                <label for="phoneNumber">Phone Number</label>
+                <input id="phoneNumber" name="phoneNumber" type="tel" autocomplete="tel" required placeholder="e.g. 08012345678" />
+                <small class="error" id="phoneNumberError"></small>
+              </div>
+
+              <div class="form-row">
+                <label for="address">Delivery Address</label>
+                <textarea id="address" name="address" rows="2" required></textarea>
+                <small class="error" id="addressError"></small>
+              </div>
+
+              <div class="form-row two-col">
+                <div>
+                  <label for="city">City</label>
+                  <input id="city" name="city" type="text" required />
+                  <small class="error" id="cityError"></small>
+                </div>
+                <div>
+                  <label for="landmark">Nearest Landmark</label>
+                  <input id="landmark" name="landmark" type="text" required />
+                  <small class="error" id="landmarkError"></small>
+                </div>
+              </div>
+
+              <div class="form-row two-col">
+                <div>
+                  <label for="package">Package</label>
+                  <select id="package" name="package" required>
+                    <option value="starter-pack">Starter Pack - ₦19,000 instead of ₦25,000</option>
+                    <option value="buy-2-get-dropper">Buy 2 + 1 Dropper - ₦33,000 instead of ₦50,000</option>
+                    <option value="bundle-plus-oil">Buy 2 + 1 Dropper + Minoxidil Oil - ₦44,000 instead of ₦75,000</option>
+                    <option value="wholesale-6-plus-dropper">Buy 5, Get 6 + 1 Dropper - ₦88,000 instead of ₦150,000</option>
+                  </select>
+                  <small class="error" id="packageError"></small>
+                </div>
+                <div>
+                  <label for="quantity">Quantity</label>
+                  <input id="quantity" name="quantity" type="number" min="1" max="20" value="1" required />
+                  <small class="error" id="quantityError"></small>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="addOn">Optional Add-On</label>
+                <select id="addOn" name="addOn">
+                  <option value="none">No add-on</option>
+                  <option value="derma-roller-bundle">Add Derma Roller - ₦4,000 with Minoxidil</option>
+                  <option value="derma-roller-alone">Derma Roller Only - ₦7,000</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label for="fulfillment">Preferred Fulfillment Option</label>
+                <select id="fulfillment" name="fulfillment" required>
+                  <option value="Full Order">Full Order</option>
+                  <option value="Pay ₦1,000 Commitment Fee First">Pay ₦1,000 Commitment Fee First</option>
+                </select>
+                <small class="error" id="fulfillmentError"></small>
+              </div>
+
+              <div class="payment-confirm-box">
+                <h3>Commitment Fee Payment Update</h3>
+                <div class="form-row">
+                  <label for="paymentStatus">Have You Paid The ₦1,000 Commitment Fee?</label>
+                  <select id="paymentStatus" name="paymentStatus">
+                    <option value="not-paid">No, I have not paid yet</option>
+                    <option value="paid">Yes, I have paid and want to notify on WhatsApp</option>
+                  </select>
+                </div>
+
+                <div id="paymentMetaFields" class="payment-meta-fields" hidden>
+                  <div class="form-row">
+                    <label for="paymentName">Name Used For Transfer</label>
+                    <input id="paymentName" name="paymentName" type="text" placeholder="Enter the account name used for payment" />
+                    <small class="error" id="paymentNameError"></small>
+                  </div>
+
+                  <div class="form-row">
+                    <label for="paymentReference">Payment Reference Or Time Sent</label>
+                    <input id="paymentReference" name="paymentReference" type="text" placeholder="e.g. Victory O. / 10:42am transfer" />
+                    <small class="error" id="paymentReferenceError"></small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="notes">Optional Notes</label>
+                <textarea id="notes" name="notes" rows="2" placeholder="Any extra direction for delivery"></textarea>
+              </div>
+
+              <div class="form-cta-group">
+                <button type="submit" class="btn btn-primary btn-full btn-order-glow btn-order-primary">Secure My Order Now</button>
+                <button type="button" class="btn btn-whatsapp btn-full" id="orderViaWhatsApp">Order via WhatsApp</button>
+                <button type="button" class="btn btn-commitment btn-full js-pay-commitment">Pay ₦1,000 Commitment Fee</button>
+              </div>
+              <p class="form-help-text">Kindly fill accurate details. Our confirmation team calls before dispatch. Unreachable numbers may lead to order cancellation.</p>
+            </form>
+
+            <aside class="order-summary reveal" aria-label="Order Summary">
+              <h3>Order Summary</h3>
+              <ul>
+                <li><span>Product</span><strong id="summaryProduct">SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)</strong></li>
+                <li><span>Selected Package</span><strong id="summaryPackage">Starter Pack</strong></li>
+                <li><span>Add-On</span><strong id="summaryAddOn">No add-on</strong></li>
+                <li><span>Quantity</span><strong id="summaryQuantity">1</strong></li>
+                <li><span>Package Price</span><strong id="summaryUnitPrice">₦0</strong></li>
+                <li><span>Add-On Price</span><strong id="summaryAddOnPrice">₦0</strong></li>
+                <li><span>Estimated Product Total</span><strong id="summaryTotal">₦0</strong></li>
+                <li><span>Shipping commitment fee</span><strong id="summaryShippingFee">₦1,000</strong></li>
+                <li><span>Payment Update</span><strong id="summaryPaymentStatus">Not paid yet</strong></li>
+              </ul>
+              <div class="summary-note">
+                <p>Limited supply. Discounted price ends today.</p>
+                <p>Nationwide delivery available</p>
+                <p>Pay on delivery in selected locations</p>
+                <p>GTBank: 0878290236 - Oballum Victory Uzochukwu</p>
+                <p>Our team will call to confirm before dispatch</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="pain-points">
         <div class="container">
           <div class="section-head reveal">
@@ -576,145 +715,6 @@
             Our mission is to provide effective, accessible wellness solutions with professionalism, transparency, and integrity.
           </p>
           <p><strong>SG Wellness Hub — Confidence Restored.</strong></p>
-        </div>
-      </section>
-
-      <section class="section" id="order">
-        <div class="container">
-          <div class="section-head reveal">
-            <p class="eyebrow">Checkout</p>
-            <h2>Place Your Order Now</h2>
-          </div>
-
-          <div class="order-layout">
-            <form id="orderForm" class="order-form reveal" novalidate>
-              <div class="form-row">
-                <label for="fullName">Full Name</label>
-                <input id="fullName" name="fullName" type="text" autocomplete="name" required />
-                <small class="error" id="fullNameError"></small>
-              </div>
-
-              <div class="form-row">
-                <label for="phoneNumber">Phone Number</label>
-                <input id="phoneNumber" name="phoneNumber" type="tel" autocomplete="tel" required placeholder="e.g. 08012345678" />
-                <small class="error" id="phoneNumberError"></small>
-              </div>
-
-              <div class="form-row">
-                <label for="address">Delivery Address</label>
-                <textarea id="address" name="address" rows="2" required></textarea>
-                <small class="error" id="addressError"></small>
-              </div>
-
-              <div class="form-row two-col">
-                <div>
-                  <label for="city">City</label>
-                  <input id="city" name="city" type="text" required />
-                  <small class="error" id="cityError"></small>
-                </div>
-                <div>
-                  <label for="landmark">Nearest Landmark</label>
-                  <input id="landmark" name="landmark" type="text" required />
-                  <small class="error" id="landmarkError"></small>
-                </div>
-              </div>
-
-              <div class="form-row two-col">
-                <div>
-                  <label for="package">Package</label>
-                  <select id="package" name="package" required>
-                    <option value="starter-pack">Starter Pack - ₦19,000 instead of ₦25,000</option>
-                    <option value="buy-2-get-dropper">Buy 2 + 1 Dropper - ₦33,000 instead of ₦50,000</option>
-                    <option value="bundle-plus-oil">Buy 2 + 1 Dropper + Minoxidil Oil - ₦44,000 instead of ₦75,000</option>
-                    <option value="wholesale-6-plus-dropper">Buy 5, Get 6 + 1 Dropper - ₦88,000 instead of ₦150,000</option>
-                  </select>
-                  <small class="error" id="packageError"></small>
-                </div>
-                <div>
-                  <label for="quantity">Quantity</label>
-                  <input id="quantity" name="quantity" type="number" min="1" max="20" value="1" required />
-                  <small class="error" id="quantityError"></small>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <label for="addOn">Optional Add-On</label>
-                <select id="addOn" name="addOn">
-                  <option value="none">No add-on</option>
-                  <option value="derma-roller-bundle">Add Derma Roller - ₦4,000 with Minoxidil</option>
-                  <option value="derma-roller-alone">Derma Roller Only - ₦7,000</option>
-                </select>
-              </div>
-
-              <div class="form-row">
-                <label for="fulfillment">Preferred Fulfillment Option</label>
-                <select id="fulfillment" name="fulfillment" required>
-                  <option value="Full Order">Full Order</option>
-                  <option value="Pay ₦1,000 Commitment Fee First">Pay ₦1,000 Commitment Fee First</option>
-                </select>
-                <small class="error" id="fulfillmentError"></small>
-              </div>
-
-              <div class="payment-confirm-box">
-                <h3>Commitment Fee Payment Update</h3>
-                <div class="form-row">
-                  <label for="paymentStatus">Have You Paid The ₦1,000 Commitment Fee?</label>
-                  <select id="paymentStatus" name="paymentStatus">
-                    <option value="not-paid">No, I have not paid yet</option>
-                    <option value="paid">Yes, I have paid and want to notify on WhatsApp</option>
-                  </select>
-                </div>
-
-                <div id="paymentMetaFields" class="payment-meta-fields" hidden>
-                  <div class="form-row">
-                    <label for="paymentName">Name Used For Transfer</label>
-                    <input id="paymentName" name="paymentName" type="text" placeholder="Enter the account name used for payment" />
-                    <small class="error" id="paymentNameError"></small>
-                  </div>
-
-                  <div class="form-row">
-                    <label for="paymentReference">Payment Reference Or Time Sent</label>
-                    <input id="paymentReference" name="paymentReference" type="text" placeholder="e.g. Victory O. / 10:42am transfer" />
-                    <small class="error" id="paymentReferenceError"></small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <label for="notes">Optional Notes</label>
-                <textarea id="notes" name="notes" rows="2" placeholder="Any extra direction for delivery"></textarea>
-              </div>
-
-              <div class="form-cta-group">
-                <button type="submit" class="btn btn-primary btn-full btn-order-glow btn-order-primary">Secure My Order Now</button>
-                <button type="button" class="btn btn-whatsapp btn-full" id="orderViaWhatsApp">Order via WhatsApp</button>
-                <button type="button" class="btn btn-commitment btn-full js-pay-commitment">Pay ₦1,000 Commitment Fee</button>
-              </div>
-              <p class="form-help-text">Kindly fill accurate details. Our confirmation team calls before dispatch. Unreachable numbers may lead to order cancellation.</p>
-            </form>
-
-            <aside class="order-summary reveal" aria-label="Order Summary">
-              <h3>Order Summary</h3>
-              <ul>
-                <li><span>Product</span><strong id="summaryProduct">SG Wellness Hub 5% Minoxidil Hair Growth Solution (60ml)</strong></li>
-                <li><span>Selected Package</span><strong id="summaryPackage">Starter Pack</strong></li>
-                <li><span>Add-On</span><strong id="summaryAddOn">No add-on</strong></li>
-                <li><span>Quantity</span><strong id="summaryQuantity">1</strong></li>
-                <li><span>Package Price</span><strong id="summaryUnitPrice">₦0</strong></li>
-                <li><span>Add-On Price</span><strong id="summaryAddOnPrice">₦0</strong></li>
-                <li><span>Estimated Product Total</span><strong id="summaryTotal">₦0</strong></li>
-                <li><span>Shipping commitment fee</span><strong id="summaryShippingFee">₦1,000</strong></li>
-                <li><span>Payment Update</span><strong id="summaryPaymentStatus">Not paid yet</strong></li>
-              </ul>
-              <div class="summary-note">
-                <p>Limited supply. Discounted price ends today.</p>
-                <p>Nationwide delivery available</p>
-                <p>Pay on delivery in selected locations</p>
-                <p>GTBank: 0878290236 - Oballum Victory Uzochukwu</p>
-                <p>Our team will call to confirm before dispatch</p>
-              </div>
-            </aside>
-          </div>
         </div>
       </section>
 
